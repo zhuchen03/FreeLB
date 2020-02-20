@@ -655,6 +655,7 @@ def main():
     parser.add_argument('--gpu', type=str, default="0")
     parser.add_argument('--expname', type=str, default="default")
     parser.add_argument('--comet', default=False, action="store_true")
+    parser.add_argument('--comet_key', default="", type=str)
     parser.add_argument('--hidden_dropout_prob', type=float, default=0.1)
     parser.add_argument('--attention_probs_dropout_prob', type=float, default=0)
     args = parser.parse_args()
@@ -663,9 +664,9 @@ def main():
     os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu
 
     if args.comet:
-        experiment = Experiment(api_key="rDAkOIdZKeA9e1qS0UlkFe5Gy",
+        experiment = Experiment(api_key=args.comet_key,
                                 project_name="pytorch-freelb", workspace="NLP",
-                                auto_param_logging=False, auto_metric_logging=False, \
+                                auto_param_logging=False, auto_metric_logging=False,
                                 parse_args=True, auto_output_logging=True
                                 )
         experiment.disable_mp()  # Turn off monkey patching
