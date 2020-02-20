@@ -5,22 +5,23 @@ function runexp {
 export GLUE_DIR=glue_data
 export TASK_NAME=${1}
 
-gpu=${2}
-mname=${3}
-alr=${4}
-amag=${5}
-anorm=${6}
-asteps=${7}
-lr=${8}
-bsize=${9}
-gas=${10}
-seqlen=512
-hdp=${11}
-adp=${12}
-ts=${13}
-ws=${14}
-seed=${15}
-wd=${16}
+gpu=${2}      # The GPU you want to use
+mname=${3}    # Model name
+alr=${4}      # Step size of gradient ascent
+amag=${5}     # Magnitude of initial (adversarial?) perturbation
+anorm=${6}    # Maximum norm of adversarial perturbation
+asteps=${7}   # Number of gradient ascent steps for the adversary
+lr=${8}       # Learning rate for model parameters
+bsize=${9}    # Batch size
+gas=${10}     # Gradient accumulation. bsize * gas = effective batch size
+seqlen=512    # Maximum sequence length
+hdp=${11}     # Hidden layer dropouts for ALBERT
+adp=${12}     # Attention dropouts for ALBERT
+ts=${13}      # Number of training steps (counted as parameter updates)
+ws=${14}      # Learning rate warm-up steps
+seed=${15}    # Seed for randomness
+wd=${16}      # Weight decay
+
 expname=FreeLB-${mname}-${TASK_NAME}-alr${alr}-amag${amag}-anm${anorm}-as${asteps}-sl${seqlen}-lr${lr}-bs${bsize}-gas${gas}-hdp${hdp}-adp${adp}-ts${ts}-ws${ws}-wd${wd}-seed${seed}
 
 python examples/run_glue_freelb.py \

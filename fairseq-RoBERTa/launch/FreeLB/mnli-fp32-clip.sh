@@ -1,18 +1,18 @@
 
 function run_exp {
-    GPU=${1}
-    TOTAL_NUM_UPDATES=${2}
-    WARMUP_UPDATES=${3}
-    LR=${4}
-    NUM_CLASSES=${5}
-    MAX_SENTENCES=${6}
-    FREQ=${7}
-    DATA=${8}
-    ADV_LR=${9}
-    ADV_STEPS=${10}
-    INIT_MAG=${11}
-    SEED=${12}
-    MNORM=${13}
+    GPU=${1}                     # GPU id, use, e.g., "0,1" for multiple GPUs
+    TOTAL_NUM_UPDATES=${2}       # Total number of parameter updates
+    WARMUP_UPDATES=${3}          # Learning rate warmup steps
+    LR=${4}                      # (Maximum) learning rate
+    NUM_CLASSES=${5}             # Number of classes for the task
+    MAX_SENTENCES=${6}           # Max number of sentences PER GPU!
+    FREQ=${7}                    # Gradient accumulation steps. Effective batch size = num_gpus * MAX_SENTENCES * FREQ
+    DATA=${8}                    # Task/Dataset name
+    ADV_LR=${9}                  # Step size for adversary
+    ADV_STEPS=${10}              # Gradient ascent steps for adversary
+    INIT_MAG=${11}               # Magnitude of initial (adversarial?) perturbation
+    SEED=${12}                   # Seed for randomness
+    MNORM=${13}                  # Maximum norm of adversarial perturbation
 
 ROBERTA_PATH=pretrained/roberta.large/model.pt
 exp_name=FreeLB-syncdp-${DATA}-iters${TOTAL_NUM_UPDATES}-warmup${WARMUP_UPDATES}-lr${LR}-bsize${MAX_SENTENCES}-freq${FREQ}-advlr${ADV_LR}-advstep${ADV_STEPS}-initmag${INIT_MAG}-fp32-seed${SEED}-beta0.999-mnorm${MNORM}
