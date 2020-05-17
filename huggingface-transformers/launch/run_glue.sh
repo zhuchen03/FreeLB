@@ -41,23 +41,29 @@ python examples/run_glue_freelb.py \
   --adv-lr ${alr} --adv-init-mag ${amag} --adv-max-norm ${anorm} --adv-steps ${asteps} \
   --expname ${expname} --evaluate_during_training \
   --max_steps ${ts} --warmup_steps ${ws} --seed ${seed} \
-  --logging_steps 1000 --save_steps 1000 \
+  --logging_steps 100 --save_steps 100 \
   --fp16 \
   --comet \
   > logs/${expname}.log 2>&1 &
 }
 
 
-# runexp TASK_NAME  gpu      model_name      adv_lr  adv_mag  anorm  asteps  lr     bsize  grad_accu  hdp  adp    ts     ws       seed      wd
-runexp  SST-2     0,1       albert-xxlarge-v2   1e-1    1.0     6e-1    3    1e-5   16       1        0.1   0  20935   1256      42         1e-2
+# runexp TASK_NAME  gpu      model_name      adv_lr  adv_mag  anorm  asteps  lr     bsize  grad_accu  hdp  adp      ts     ws     seed      wd
+runexp  SST-2       0       albert-xxlarge-v2   1e-1    6e-1      0    2    1e-5     32       1        0.1   0    20935   1256     42     1e-2
 
-runexp  MNLI       0        albert-xxlarge-v2   4e-2     8e-2      0       3    3e-5   16        8        0.1   0  10000   1000      8023         1e-2
+runexp  MRPC        0       albert-xxlarge-v2   3e-2       0      0    4    2e-5     16       1        0.1   0      800    200     42     1e-2
 
-#
-runexp  QQP        0        albert-xxlarge-v2   2e-1   3.2e-1   7e-1    3    5e-5   128      1        0.1   0.1  14000   1000      42       1e-2
+runexp  CoLA        0       albert-xxlarge-v2   4e-2    5e-2      0    3    1e-5     16       1        0.1   0     5336    320     42     1e-2
 
+runexp  STS-B       0       albert-xxlarge-v2   1e-1    2e-1      0    3    2e-5     16       1        0.1   0     3598    214     42     1e-2
 
-runexp  QNLI       1        albert-xxlarge-v2   5e-2      1e-1     0       3    1e-5   8       4        0.1   0    33112   1986      42    1e-2
+runexp  MNLI        0       albert-xxlarge-v2   4e-2    8e-2      0    3    3e-5    128       1        0.1   0    10000   1000     42     1e-2
+
+runexp  QQP         0       albert-xxlarge-v2   2e-1  3.2e-1   7e-1    3    5e-5    128       1        0.1   0.1  14000   1000     42     1e-2
+
+runexp  RTE         0       albert-xxlarge-v2   1e-1      0       0    3    3e-5     32       1        0.1   0.1    800    200     42     1e-2
+
+runexp  QNLI        0       albert-xxlarge-v2   5e-2    1e-1      0    3    1e-5      8       4        0.1   0    33112   1986     42     1e-2
 
 
 

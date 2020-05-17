@@ -12,6 +12,8 @@ Chen Zhu, Yu Cheng, Zhe Gan, Siqi Sun, Tom Goldstein, and Jingjing Liu. [FreeLB:
 # What's New
 * Feb 15, 2020: Initial release of FreeLB based on fairseq and HuggingFace's transformers. The first one contains our implementations of FreeLB, FreeAT, YOPO for [RoBERTa](https://arxiv.org/abs/1907.11692), while the latter one is FreeLB for [ALBERT](https://arxiv.org/abs/1909.11942).
 
+* May 16, 2020: Hyperparameters for ALBERT are now available at `huggingface-transformers/launch/run_glue.sh`.
+
 # Prerequisites
 The code is compatible with PyTorch 1.4.0. 
 In addition, you need to execute the followings in order, to install the prerequisites for fairseq and HuggingFace's transformers:
